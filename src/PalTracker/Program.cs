@@ -18,8 +18,9 @@ namespace PalTracker
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        WebHostBuilder(args).Build();
+
+        public static IWebHostBuilder WebHostBuilder(string[] args) =>
+              WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
     }
 }
