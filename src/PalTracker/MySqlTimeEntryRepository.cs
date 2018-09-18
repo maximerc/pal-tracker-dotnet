@@ -38,8 +38,12 @@ namespace PalTracker
             return timeEntryRecord.ToEntity();
         }
 
-        public IEnumerable<TimeEntry> List() =>
-            _timeEntryContext.TimeEntryRecords.AsNoTracking().Select(t => t.ToEntity());
+        public IEnumerable<TimeEntry> List()
+        {
+            var records =  _timeEntryContext.TimeEntryRecords.AsNoTracking();
+            var entries = records.Select(t => t.ToEntity());
+            return entries;
+        } 
 
         public TimeEntry Update(long id, TimeEntry timeEntry)
         {
