@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
 
 namespace PalTracker
 {
@@ -21,6 +22,8 @@ namespace PalTracker
         WebHostBuilder(args).Build();
 
         public static IWebHostBuilder WebHostBuilder(string[] args) =>
-              WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+              WebHost.CreateDefaultBuilder(args)
+                    .ConfigureAppConfiguration(config => config.AddCloudFoundry())
+                    .UseStartup<Startup>();
     }
 }
